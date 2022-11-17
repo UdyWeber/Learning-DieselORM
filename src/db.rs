@@ -2,6 +2,8 @@ use diesel::prelude::*;
 use dotenv::dotenv;
 use std::env;
 
+// This function will connect us to our database, 
+// We will use the DBconnection to us to be able to communicate with the Database
 pub fn establish_connection() -> PgConnection {
     dotenv().ok();
 
