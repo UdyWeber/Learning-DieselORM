@@ -23,8 +23,17 @@ pub fn get_users_total_count(connection: &PgConnection) -> i64{
 pub fn get_user_by_email(connection: &PgConnection, user_email: &str) -> Option<User>{
     let user = users::table()
         .filter(email.eq(user_email))
+        .filter(removed.eq(false))
         .first::<User>(connection)
         .optional()
         .expect("User not found whit argument email.");
     return user
+}
+
+pub fn get_all_db_users_with_filters(connection: &PgConnection) -> Vec<User>{
+    let db_users = users::table()
+        .filter(removed.eq(false))
+        .load::<User>(connection)
+        .expect("Error While trying to get users");
+    return db_users
 }

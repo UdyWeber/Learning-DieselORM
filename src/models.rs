@@ -1,3 +1,5 @@
+use std::fmt::Display;
+
 use crate::schema::users::{self};
 
 // We are going to define the struct as insertable to perform inserts on the table
